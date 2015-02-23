@@ -2,6 +2,7 @@ package com.resterman.kongregateforums.ui.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,11 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.resterman.kongregateforums.R;
 import com.resterman.kongregateforums.model.Topic;
 import com.resterman.kongregateforums.ui.activities.ForumActivity;
+import com.resterman.kongregateforums.ui.activities.TopicActivity;
 import com.resterman.kongregateforums.ui.adapters.TopicAdapter;
 
 import org.apache.http.HttpResponse;
@@ -79,6 +82,21 @@ public class ForumFragment extends Fragment {
                 new ArrayList<Topic>()
         );
         topics.setAdapter(topicAdapter);
+        topics.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Topic topic = (Topic) parent.getItemAtPosition(position);
+                String link = topic.getLink();
+
+                Bundle bundle = new Bundle();
+                bundle.putString(LINK, link);
+
+                Intent intent = new Intent(getActivity().getApplicationContext(), TopicActivity.class);
+                intent.putExtras(bundle);
+
+                startActivity(intent);
+            }
+        });
         progressBar = view.findViewById(R.id.progress_bar);
 
         return view;
@@ -138,6 +156,7 @@ public class ForumFragment extends Fragment {
 
                 Topic topic = new Topic();
                 topic.setTitle(htmlTitle.text());
+                topic.setLink(htmlTitle.absUrl("href"));
                 topic.setPosts(htmlStats.get(0).text());
                 topic.setViews(htmlStats.get(1).text());
                 topic.setLastPostAuthor(htmlLastPost.getElementsByTag("abbr")

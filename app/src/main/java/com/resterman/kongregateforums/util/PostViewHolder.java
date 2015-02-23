@@ -3,6 +3,7 @@ package com.resterman.kongregateforums.util;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 public class PostViewHolder {
 
     public ImageView avatar;

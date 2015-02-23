@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.resterman.kongregateforums.R;
-import com.resterman.kongregateforums.util.PicassoImageGetter;
 import com.resterman.kongregateforums.model.Post;
+import com.resterman.kongregateforums.util.PicassoImageGetter;
 import com.resterman.kongregateforums.util.PostViewHolder;
 import com.squareup.picasso.Picasso;
 

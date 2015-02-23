@@ -26,6 +26,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.resterman.kongregateforums.ui.activities.HomeActivity" />
         </activity>
+        <activity
+            android:name=".ui.activities.TopicActivity"
+            android:label="@string/title_activity_topic" >
+        </activity>
     </application>
 
 </manifest>
